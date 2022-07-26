@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Aallot')"></div>
+	<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	<div class="container">
+	<form th:object="${aalto}" th:action="@{/savewave}" method="post" action="#">
+			<div class="row mb-3 mt-3">
+				<input type="hidden" th:field="*{row_id}" /> 
+
+				<label for="lpk" class="form-label mt-3">Leirilippukunta</label> 
+				<select id="lpk" class="form-select" th:field="*{leirilpk}" disabled>
+				<option th:value="NULL">Ei valintaa</option>
+					<option th:each="lpk : ${lpkt}" 
+					th:text="${lpk.getLeirilpk()}" 
+					th:value="${lpk.leirilpk}"></option>
+				</select> 
+				
+				<label for="alaleiri" class="form-label mt-3">Alaleiri</label> 
+				<select
+					id="alaleiri" class="form-select" th:field="*{alaleiri}" disabled>
+					<option th:value="NULL">Ei valintaa</option>
+					<option th:each="alaleiri : ${alaleirit}" 
+					th:value="${alaleiri.alaleiri}"
+					th:text="${alaleiri.getAlaleiri()}"></option>
+				</select> 
+				<label for="aalto" class="form-label mt-3">Aalto</label>
+				<input
+					type="number" class="form-control" pattern="[1-2]+" id="aalto"
+					th:field="*{aalto}" /> 
+				
+				
+				<input type="submit" value="Save"
+					class="btn btn-success mx-auto d-block mb-2 mt-2" />
+			</div>
+		</form>
+	
+	
+		
+		<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Aallot')"></div>
+	<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	<div class="container">
+	<table id="mainTable" class="table table-striped aalto">
+			<thead class="thead-dark">
+				<tr>
+					<th>ID</th>
+					<th>Alaleiri</th>
+					<th>Leirilpk</th>
+					<th>Aalto</th>
+				</tr>
+			</thead>
+			<tr th:each="aalto :${aaltolista}">
+				<td th:text=${aalto.getRowId()}>ID</td>
+				<td th:text=${aalto.alaleiri?.getAlaleiri()}>Paikka</td>
+				<td th:text=${aalto.leirilpk?.getLeirilpk()}>Aalto</td>
+				<td th:text=${aalto.getAalto()}>LeiriApp</td>
+				<td>
+				<a th:href=@{aaltodel/{id}(id=${aalto.row_id})}
+					onclick="return confirm('Oletko varma?')"
+					class="deleteText">Poista</a> 
+				<a
+					th:href=@{aaltoedit/{id}(id=${aalto.row_id})} class="editText">Muokkaa</a></td>
+			</tr>
+		</table>
+	
+	
+		
+		<div class="d-flex justify-content-center mt-4 mb-4">
+	</div>
+	</div>
+
+</body>
+</html>

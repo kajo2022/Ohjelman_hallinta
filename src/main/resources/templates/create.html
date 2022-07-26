@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link type="text/css" th:rel="stylesheet"
+	th:href="@{/css/bootstrap.min.css}" />
+<link type="text/css" th:rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+<body>
+	<script>
+		0
+	</script>
+	<div th:replace="segments :: menu (title='Editoi ohjelmaa')"></div>
+
+	<div class="container">
+	<div>
+		<form th:object="${ohjelma}" th:action="@{/tallenna}" method="post" action="#">
+			<div class="row mb-3 mt-3">
+				
+				<label
+					for="otsikko" class="form-label mt-3">Otsikko</label> 
+					
+					<input type="text"
+					class="form-control" id="otsikko" th:field="*{otsikko}" /> 
+					
+					<label
+					for="start" class="form-label mt-3">Alkuaika</label> 
+					
+					<input
+					type="text" placeholder="YYYY-MM-DD HH:mm" class="form-control" id="start" th:field="*{start}" />
+
+				<label for="end" class="form-label mt-3">Loppuaika</label> <input
+					type="text" placeholder="YYYY-MM-DD HH:mm" class="form-control" id="start" th:field="*{end}" />
+
+				<label for="paikka" class="form-label mt-3">Paikka</label> <input
+					type="text" class="form-control" id="paikka" th:field="*{paikka}" />
+
+				<label for="aalto" class="form-label mt-3">Aalto</label>
+				<input
+					type="number" class="form-control" pattern="[1-2]+" id="aalto"
+					th:field="*{aalto}" /> 
+					
+				<label for="app" class="form-label mt-3">Leiri-app</label>
+				<input type="number" class="form-control" pattern="[1-2]+" id="app"
+					th:field="*{leiri_app}" /> 
+					
+				<label for="siskuva" class="form-label mt-3">Sisäinen
+					kuvaus</label> 
+				<input type="text" class="form-control" id="siskuva"
+					th:field="*{internal_desc}" /> 
+					
+				<label for="lisatieto" class="form-label mt-3">Lisätieto</label> 
+				<input type="text"
+					class="form-control" id="lisatieto" th:field="*{lisatieto}" /> 
+				
+				<label for="kategoria" class="form-label mt-3">Kategoria</label> 
+				<select id="kategoria" class="form-select" th:field="*{kategoria}">
+				<option th:value="NULL">Ei valintaa</option>
+					<option th:each="kategoria : ${kategoriat}" 
+					th:text="${kategoria.getKategoria()}" 
+					th:value="${kategoria.kategoria}"></option>
+				</select> 
+				
+				<label for="alaleiri" class="form-label mt-3">Alaleiri</label> 
+				<select
+					id="alaleiri" class="form-select" th:field="*{alaleiri}">
+					<option th:value="NULL">Ei valintaa</option>
+					<option th:each="alaleiri : ${alaleirit}" 
+					th:value="${alaleiri.alaleiri}"
+					th:text="${alaleiri.getAlaleiri()}"></option>
+				</select> 
+				
+				<label for="ika" class="form-label mt-3">Ikäkausi</label> 
+				<select id="ika" class="form-select" th:field="*{ikakausi}">
+				<option th:value="NULL">Ei valintaa</option>
+					<option th:each="ika : ${ikakausi}" 
+					th:value="${ika.ikakausi}"
+					th:text="${ika.getIkakausi()}"></option>
+				</select> 
+				
+				<label for="osal" class="form-label mt-3">Osa-alue</label>
+				<select id="osal" class="form-select" th:field="*{osa_alue}">
+				<option th:value="NULL">Ei valintaa</option>
+					<option th:each="osal : ${osalue}" 
+					th:value="${osal.osalue}"
+					th:text="${osal.getOsalue()}"></option>
+				</select> 
+				
+				<label for="ryhma" class="form-label mt-3">Ryhmä</label> 
+				<select
+					id="ryhma" class="form-select" th:field="*{ryhma}">
+					<option th:value="NULL">Ei valintaa</option>
+					<option th:each="ryhma : ${ryhma}" 
+					th:value="${ryhma.ryhma}"
+					th:text="${ryhma.getRyhma()}"></option>
+				</select> 
+				
+				<input type="submit" value="Save"
+					class="btn btn-success mx-auto d-block mb-2 mt-2" />
+			</div>
+		</form>
+		</div>
+
+
+	</div>
+
+</body>
+</html>
